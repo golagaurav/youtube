@@ -1,8 +1,8 @@
 import '../styles/globals.css';
 
 export const metadata = {
-  title: 'YouTube Clone',
-  description: 'Next.js + Tailwind YouTube Clone',
+  title: 'YouTube',
+  description: 'Next.js + Tailwind YouTube',
 };
 
 export default function RootLayout({
