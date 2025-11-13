@@ -1,3 +1,5 @@
+'use client';
+import Navbar from '@/components/Navbar'; // 👈 Navbar import
 import Sidebar from '../components/Sidebar';
 import VideoCard from '../components/VideoCard';
 
@@ -7,14 +9,25 @@ const videos = [
 ];
 
 export default function HomePage() {
+  const handleMenuToggle = () => {
+    console.log('Sidebar toggle clicked');
+  };
+
   return (
-    <div className="flex">
-      <Sidebar />
-      <main className="flex-1 p-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-        {videos.map((video) => (
-          <VideoCard key={video.id} {...video} />
-        ))}
-      </main>
+    <div className="min-h-screen bg-gray-50 dark:bg-[#0f0f0f]">
+      {/* ✅ Navbar on top */}
+      <Navbar onMenuToggle={handleMenuToggle} />
+
+      {/* ✅ Sidebar + main content below navbar */}
+      <div className="flex">
+        <Sidebar />
+
+        <main className="flex-1 p-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+          {videos.map((video) => (
+            <VideoCard key={video.id} {...video} />
+          ))}
+        </main>
+      </div>
     </div>
   );
 }
