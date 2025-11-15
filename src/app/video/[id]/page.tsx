@@ -1,11 +1,7 @@
-"use client";  // Mark this file as a Client Component for hooks
+'use client';
 
 import React, { useEffect, useState } from 'react';
-import Image from 'next/image';
-
-interface VideoPageProps {
-  params: { id: string };
-}
+import { useParams } from 'next/navigation';
 
 interface VideoDetails {
   title: string;
@@ -13,49 +9,55 @@ interface VideoDetails {
   thumbnail: string;
 }
 
-const fetchVideoDetails = async (videoId: string): Promise<VideoDetails | null> => {
-  const API_KEY = process.env.NEXT_PUBLIC_YOUTUBE_API_KEY;
-  const BASE_URL = 'https://www.googleapis.com/youtube/v3/videos';
-  try {
-    const res = await fetch(
-      `${BASE_URL}?part=snippet&id=${videoId}&key=${API_KEY}`
-    );
-    const data = await res.json();
-    if (data.items && data.items.length > 0) {
-      const { title, description, thumbnails } = data.items[0].snippet;
-      return {
-        title,
-        description,
-        thumbnail: thumbnails.medium.url,  // Use medium-sized thumbnail for better quality
-      };
-    }
-    return null;
-  } catch (error) {
-    console.error('Error fetching video details:', error);
-    return null;
-  }
+const demoData: VideoDetails = {
+  title: 'Rick Astley - Never Gonna Give You Up',
+  description: 'The official video for “Never Gonna Give You Up” by Rick Astley.',
+  thumbnail: 'https://i.ytimg.com/vi/dQw4w9WgXcQ/mqdefault.jpg',
 };
 
-export default function VideoPage({ params }: VideoPageProps) {
-  const videoId = params.id;
+export default function VideoPage() {
+  const params = useParams();
+  const videoId = params?.id ?? 'dQw4w9WgXcQ'; // Fallback demo video ID
 
   const [videoDetails, setVideoDetails] = useState<VideoDetails | null>(null);
-  const [loading, setLoading] = useState<boolean>(true);
+  const [loading, setLoading] = useState(true);
 
+  // Fetch video data (replace with real API call)
   useEffect(() => {
-    const getVideoDetails = async () => {
-      const details = await fetchVideoDetails(videoId);
-      setVideoDetails(details);
-      setLoading(false);
+    const fetchVideo = async () => {
+      try {
+        // Uncomment for actual API request
+        // const API_KEY = process.env.NEXT_PUBLIC_YOUTUBE_API_KEY;
+        // const res = await fetch(`https://www.googleapis.com/youtube/v3/videos?part=snippet&id=${videoId}&key=${API_KEY}`);
+        // const data = await res.json();
+        // if (data.items && data.items.length > 0) {
+        //   const { title, description, thumbnails } = data.items[0].snippet;
+        //   setVideoDetails({
+        //     title,
+        //     description,
+        //     thumbnail: thumbnails.medium.url,
+        //   });
+        // }
+
+        // Demo data fallback
+        setTimeout(() => {
+          setVideoDetails(demoData);
+          setLoading(false);
+        }, 500);
+      } catch (error) {
+        console.error('Error fetching video details:', error);
+        setVideoDetails(null);
+        setLoading(false);
+      }
     };
 
-    getVideoDetails();
+    fetchVideo();
   }, [videoId]);
 
-  if (loading) return <p>Loading...</p>;
+  if (loading) return <p className="text-center text-lg font-medium">Loading...</p>;
 
   if (!videoDetails) {
-    return <p>Video not found or invalid ID.</p>;
+    return <p className="text-center text-lg font-medium text-red-500">Video not found or invalid ID.</p>;
   }
 
   return (
@@ -64,19 +66,18 @@ export default function VideoPage({ params }: VideoPageProps) {
         className="w-full aspect-video rounded-lg"
         src={`https://www.youtube.com/embed/${videoId}`}
         allowFullScreen
+        title={videoDetails.title}
       ></iframe>
+
       <div className="mt-4">
-        <h2 className="text-lg font-bold">{videoDetails.title}</h2>
-        <p>{videoDetails.description}</p>
-        {/* Using Next.js Image component for optimization */}
-        <div className="relative mt-4 w-full max-w-xs">
-          <Image
+        <h2 className="text-xl font-bold">{videoDetails.title}</h2>
+        <p className="text-gray-700 mt-2">{videoDetails.description}</p>
+        <div className="mt-4">
+          <img
+            className="w-full max-w-xs rounded-lg cursor-pointer"
             src={videoDetails.thumbnail}
             alt={videoDetails.title}
-            width={320}  // Width of the image
-            height={180} // Height of the image
-            className="rounded-lg object-cover"
-            priority  // Prioritize image loading for faster LCP
+            onClick={() => window.open(`https://www.youtube.com/watch?v=${videoId}`, '_blank')}
           />
         </div>
       </div>
