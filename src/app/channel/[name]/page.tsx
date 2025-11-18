@@ -1,4 +1,3 @@
-// src/app/channel/[name]/page.tsx
 'use client';
 
 import { useRouter } from 'next/router';
