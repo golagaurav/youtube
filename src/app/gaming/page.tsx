@@ -1,10 +1,9 @@
-// src/app/gaming/page.tsx
 import React from 'react';
 import VideoGrid from '../../components/VideoGrid';
 import { fetchVideos } from '../../lib/youtubeApi';
 
 const GamingPage = async () => {
-  const videos = await fetchVideos('gaming'); // Fetch gaming videos
+  const videos = await fetchVideos('gaming'); 
   
   return (
     <div>
