@@ -4,7 +4,7 @@ import VideoGrid from '../../components/VideoGrid';
 import { fetchVideos } from '../../lib/youtubeApi';
 
 const ExplorePage = async () => {
-  const videos = await fetchVideos('trending'); // Just an example API call
+  const videos = await fetchVideos('trending');
   
   return (
     <div>
