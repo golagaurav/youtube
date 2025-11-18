@@ -1,10 +1,9 @@
-// src/app/history/page.tsx
 import React from 'react';
 import VideoGrid from '../../components/VideoGrid';
 import { fetchVideos } from '../../lib/youtubeApi';
 
 const HistoryPage = async () => {
-  const videos = await fetchVideos('history'); // Fetch history videos
+  const videos = await fetchVideos('history');
   
   return (
     <div>
