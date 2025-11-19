@@ -1,4 +1,3 @@
-// src/app/explore/page.tsx
 import React from 'react';
 import VideoGrid from '../../components/VideoGrid';
 import { fetchVideos } from '../../lib/youtubeApi';
