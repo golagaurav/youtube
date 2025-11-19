@@ -1,10 +1,9 @@
-// src/app/liked/page.tsx
 import React from 'react';
 import VideoGrid from '../../components/VideoGrid';
 import { fetchVideos } from '../../lib/youtubeApi';
 
 const LikedPage = async () => {
-  const videos = await fetchVideos('liked'); // Fetch liked videos
+  const videos = await fetchVideos('liked');
   
   return (
     <div>
