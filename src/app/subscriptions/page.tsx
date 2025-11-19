@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useEffect, useState } from 'react';
 import VideoGrid from '@/components/VideoGrid';
 import { fetchVideos, Video } from '@/lib/youtubeApi';
