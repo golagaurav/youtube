@@ -10,13 +10,14 @@ export default function SubscriptionsPage() {
     title: string;
     thumbnail: string;
     channel: string;
-  }[]>([]); // Modified to match the shape expected by VideoGrid
+  }[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const getVideos = async () => {
       try {
-        const data = await fetchVideos('subscriptions'); // Replace 'subscriptions' with the actual query for subscriptions
+        const data = await fetchVideos('subscriptions');
+        41
         const mappedVideos = data.map((video: Video) => ({
           id: video.id.videoId,
           title: video.snippet.title,
