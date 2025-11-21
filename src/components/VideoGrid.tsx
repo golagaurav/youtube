@@ -1,4 +1,3 @@
-// src/components/VideoGrid.tsx
 import React from 'react';
 import VideoCard from './VideoCard';
 
@@ -10,7 +9,7 @@ type Video = {
 };
 
 type VideoGridProps = {
-  videos?: Video[];  // Make the `videos` prop optional
+  videos?: Video[];
 };
 
 const mockVideos: Video[] = [
