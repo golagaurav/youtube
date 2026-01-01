@@ -17,7 +17,7 @@ export default function Navbar({ onMenuToggle }: { onMenuToggle: () => void }) {
         />
         <div className="flex items-center cursor-pointer">
           <Image
-            src="/youtube-logo.png" // 👈 put your YouTube logo image here (red play icon)
+            src="/youtube-logo.png"
             alt="YouTube"
             width={90}
             height={20}
