@@ -1,3 +1,8 @@
+
+# run 
+npm run dev
+
+
 youtube/
  ├─ src/
  │   ├─ app/
