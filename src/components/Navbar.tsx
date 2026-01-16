@@ -9,7 +9,6 @@ export default function Navbar({ onMenuToggle }: { onMenuToggle: () => void }) {
 
   return (
     <nav className="flex items-center justify-between px-4 py-2 bg-white dark:bg-[#0f0f0f] shadow-sm sticky top-0 z-50">
-      {/* LEFT SECTION */}
       <div className="flex items-center gap-4">
         <FiMenu
           onClick={onMenuToggle}
@@ -17,7 +16,7 @@ export default function Navbar({ onMenuToggle }: { onMenuToggle: () => void }) {
         />
         <div className="flex items-center cursor-pointer">
           <Image
-            src="/youtube-logo.png"
+            src="/youtube-logo.png" 
             alt="YouTube"
             width={90}
             height={20}
@@ -27,7 +26,6 @@ export default function Navbar({ onMenuToggle }: { onMenuToggle: () => void }) {
         </div>
       </div>
 
-      {/* CENTER SECTION */}
       <div className="flex items-center flex-1 justify-center max-w-xl">
         <div className="flex items-center w-full max-w-lg">
           <input
@@ -45,7 +43,6 @@ export default function Navbar({ onMenuToggle }: { onMenuToggle: () => void }) {
         </button>
       </div>
 
-      {/* RIGHT SECTION */}
       <div className="flex items-center gap-4">
         <button className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-[#222222]">
           <FiVideo className="text-xl text-gray-800 dark:text-white" />
