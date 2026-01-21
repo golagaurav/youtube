@@ -1,5 +1,8 @@
 'use client';
 
+import Image from 'next/image';
+import { IconType } from 'react-icons';
+
 import {
   FiHome,
   FiClock,
@@ -16,7 +19,33 @@ import {
 } from 'react-icons/md';
 import { IoMdMusicalNotes } from 'react-icons/io';
 import { FaFire, FaGamepad, FaTrophy, FaFilm } from 'react-icons/fa';
-import Image from 'next/image';
+
+/* ---------------------------------- */
+/* Data */
+/* ---------------------------------- */
+
+const mainLinks = [
+  { label: 'Home', icon: FiHome },
+  { label: 'Explore', icon: MdOutlineExplore },
+  { label: 'Shorts', icon: MdOutlineSmartDisplay },
+  { label: 'Subscriptions', icon: MdSubscriptions },
+];
+
+const youLinks = [
+  { label: 'Library', icon: MdVideoLibrary },
+  { label: 'History', icon: MdOutlineHistory },
+  { label: 'Your Videos', icon: FiPlayCircle },
+  { label: 'Watch Later', icon: MdOutlineWatchLater },
+  { label: 'Liked Videos', icon: FiThumbsUp },
+];
+
+const exploreLinks = [
+  { label: 'Trending', icon: FaFire },
+  { label: 'Music', icon: IoMdMusicalNotes },
+  { label: 'Gaming', icon: FaGamepad },
+  { label: 'Movies', icon: FaFilm },
+  { label: 'Sports', icon: FaTrophy },
+];
 
 const channels = [
   { name: 'MrBeast', avatar: 'https://i.pravatar.cc/40?img=1' },
@@ -25,64 +54,63 @@ const channels = [
   { name: 'Fireship', avatar: 'https://i.pravatar.cc/40?img=4' },
 ];
 
+/* ---------------------------------- */
+/* Reusable Components */
+/* ---------------------------------- */
+
+function SidebarItem({
+  icon: Icon,
+  label,
+}: {
+  icon: IconType;
+  label: string;
+}) {
+  return (
+    <li className="flex items-center gap-4 p-3 rounded-xl hover:bg-gray-100 dark:hover:bg-[#272727] cursor-pointer">
+      <Icon className="text-2xl" />
+      <span className="font-medium">{label}</span>
+    </li>
+  );
+}
+
+function SectionTitle({ title }: { title: string }) {
+  return (
+    <li className="px-3 text-xs uppercase text-gray-500 dark:text-gray-400 mb-2">
+      {title}
+    </li>
+  );
+}
+
+function Divider() {
+  return <hr className="my-3 border-gray-300 dark:border-[#272727]" />;
+}
+
+/* ---------------------------------- */
+/* Sidebar */
+/* ---------------------------------- */
+
 export default function Sidebar() {
   return (
     <aside className="w-64 bg-white dark:bg-[#0f0f0f] text-gray-900 dark:text-white min-h-screen sticky top-0 overflow-y-auto scrollbar-hide">
       <ul className="flex flex-col text-sm">
 
-        {/* 🏠 MAIN SECTION */}
-        <li className="flex items-center gap-4 p-3 rounded-xl hover:bg-gray-100 dark:hover:bg-[#272727] cursor-pointer">
-          <FiHome className="text-2xl" />
-          <span className="font-medium">Home</span>
-        </li>
-        <li className="flex items-center gap-4 p-3 rounded-xl hover:bg-gray-100 dark:hover:bg-[#272727] cursor-pointer">
-          <MdOutlineExplore className="text-2xl" />
-          <span className="font-medium">Explore</span>
-        </li>
-        <li className="flex items-center gap-4 p-3 rounded-xl hover:bg-gray-100 dark:hover:bg-[#272727] cursor-pointer">
-          <MdOutlineSmartDisplay className="text-2xl" />
-          <span className="font-medium">Shorts</span>
-        </li>
-        <li className="flex items-center gap-4 p-3 rounded-xl hover:bg-gray-100 dark:hover:bg-[#272727] cursor-pointer">
-          <MdSubscriptions className="text-2xl" />
-          <span className="font-medium">Subscriptions</span>
-        </li>
+        {mainLinks.map((item) => (
+          <SidebarItem key={item.label} {...item} />
+        ))}
 
-        <hr className="my-3 border-gray-300 dark:border-[#272727]" />
+        <Divider />
 
-        {/* 📚 YOU SECTION */}
-        <li className="flex items-center gap-4 p-3 rounded-xl hover:bg-gray-100 dark:hover:bg-[#272727] cursor-pointer">
-          <MdVideoLibrary className="text-2xl" />
-          <span className="font-medium">Library</span>
-        </li>
-        <li className="flex items-center gap-4 p-3 rounded-xl hover:bg-gray-100 dark:hover:bg-[#272727] cursor-pointer">
-          <MdOutlineHistory className="text-2xl" />
-          <span className="font-medium">History</span>
-        </li>
-        <li className="flex items-center gap-4 p-3 rounded-xl hover:bg-gray-100 dark:hover:bg-[#272727] cursor-pointer">
-          <FiPlayCircle className="text-2xl" />
-          <span className="font-medium">Your Videos</span>
-        </li>
-        <li className="flex items-center gap-4 p-3 rounded-xl hover:bg-gray-100 dark:hover:bg-[#272727] cursor-pointer">
-          <MdOutlineWatchLater className="text-2xl" />
-          <span className="font-medium">Watch Later</span>
-        </li>
-        <li className="flex items-center gap-4 p-3 rounded-xl hover:bg-gray-100 dark:hover:bg-[#272727] cursor-pointer">
-          <FiThumbsUp className="text-2xl" />
-          <span className="font-medium">Liked Videos</span>
-        </li>
+        {youLinks.map((item) => (
+          <SidebarItem key={item.label} {...item} />
+        ))}
 
-        <hr className="my-3 border-gray-300 dark:border-[#272727]" />
+        <Divider />
 
-        {/* 🔔 SUBSCRIPTIONS SECTION */}
-        <li className="px-3 text-xs uppercase text-gray-500 dark:text-gray-400 mb-2">
-          Subscriptions
-        </li>
+        <SectionTitle title="Subscriptions" />
 
-        {/* Channels */}
-        {channels.map((channel, i) => (
+        {channels.map((channel) => (
           <li
-            key={i}
+            key={channel.name}
             className="flex items-center gap-4 p-3 rounded-xl hover:bg-gray-100 dark:hover:bg-[#272727] cursor-pointer"
           >
             <div className="relative w-6 h-6 rounded-full overflow-hidden bg-gray-400">
@@ -97,40 +125,18 @@ export default function Sidebar() {
           </li>
         ))}
 
-        <hr className="my-3 border-gray-300 dark:border-[#272727]" />
+        <Divider />
 
-        {/* 🔥 EXPLORE SECTION */}
-        <li className="px-3 text-xs uppercase text-gray-500 dark:text-gray-400 mb-2">
-          Explore
-        </li>
+        <SectionTitle title="Explore" />
 
-        <li className="flex items-center gap-4 p-3 rounded-xl hover:bg-gray-100 dark:hover:bg-[#272727] cursor-pointer">
-          <FaFire className="text-xl" />
-          <span>Trending</span>
-        </li>
-        <li className="flex items-center gap-4 p-3 rounded-xl hover:bg-gray-100 dark:hover:bg-[#272727] cursor-pointer">
-          <IoMdMusicalNotes className="text-xl" />
-          <span>Music</span>
-        </li>
-        <li className="flex items-center gap-4 p-3 rounded-xl hover:bg-gray-100 dark:hover:bg-[#272727] cursor-pointer">
-          <FaGamepad className="text-xl" />
-          <span>Gaming</span>
-        </li>
-        <li className="flex items-center gap-4 p-3 rounded-xl hover:bg-gray-100 dark:hover:bg-[#272727] cursor-pointer">
-          <FaFilm className="text-xl" />
-          <span>Movies</span>
-        </li>
-        <li className="flex items-center gap-4 p-3 rounded-xl hover:bg-gray-100 dark:hover:bg-[#272727] cursor-pointer">
-          <FaTrophy className="text-xl" />
-          <span>Sports</span>
-        </li>
+        {exploreLinks.map((item) => (
+          <SidebarItem key={item.label} {...item} />
+        ))}
 
-        <hr className="my-3 border-gray-300 dark:border-[#272727]" />
+        <Divider />
 
-        {/* ⚙️ SETTINGS */}
-        <li className="px-3 text-xs uppercase text-gray-500 dark:text-gray-400 mb-2">
-          More from YouTube
-        </li>
+        <SectionTitle title="More from YouTube" />
+
         <li className="flex items-center gap-4 p-3 rounded-xl hover:bg-gray-100 dark:hover:bg-[#272727] cursor-pointer">
           <span className="text-red-600 font-semibold">YouTube Premium</span>
         </li>
@@ -138,7 +144,7 @@ export default function Sidebar() {
           <span>Live</span>
         </li>
 
-        <hr className="my-3 border-gray-300 dark:border-[#272727]" />
+        <Divider />
 
         <p className="text-xs text-gray-500 dark:text-gray-400 px-3 leading-snug">
           About · Press · Copyright <br />
