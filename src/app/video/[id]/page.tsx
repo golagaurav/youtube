@@ -17,29 +17,16 @@ const demoData: VideoDetails = {
 
 export default function VideoPage() {
   const params = useParams();
-  const videoId = params?.id ?? 'dQw4w9WgXcQ'; // Fallback demo video ID
+  const videoId = params?.id ?? 'dQw4w9WgXcQ';
 
   const [videoDetails, setVideoDetails] = useState<VideoDetails | null>(null);
   const [loading, setLoading] = useState(true);
 
-  // Fetch video data (replace with real API call)
+
   useEffect(() => {
     const fetchVideo = async () => {
       try {
-        // Uncomment for actual API request
-        // const API_KEY = process.env.NEXT_PUBLIC_YOUTUBE_API_KEY;
-        // const res = await fetch(`https://www.googleapis.com/youtube/v3/videos?part=snippet&id=${videoId}&key=${API_KEY}`);
-        // const data = await res.json();
-        // if (data.items && data.items.length > 0) {
-        //   const { title, description, thumbnails } = data.items[0].snippet;
-        //   setVideoDetails({
-        //     title,
-        //     description,
-        //     thumbnail: thumbnails.medium.url,
-        //   });
-        // }
 
-        // Demo data fallback
         setTimeout(() => {
           setVideoDetails(demoData);
           setLoading(false);
