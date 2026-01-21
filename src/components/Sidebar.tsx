@@ -20,9 +20,6 @@ import {
 import { IoMdMusicalNotes } from 'react-icons/io';
 import { FaFire, FaGamepad, FaTrophy, FaFilm } from 'react-icons/fa';
 
-/* ---------------------------------- */
-/* Data */
-/* ---------------------------------- */
 
 const mainLinks = [
   { label: 'Home', icon: FiHome },
@@ -54,9 +51,6 @@ const channels = [
   { name: 'Fireship', avatar: 'https://i.pravatar.cc/40?img=4' },
 ];
 
-/* ---------------------------------- */
-/* Reusable Components */
-/* ---------------------------------- */
 
 function SidebarItem({
   icon: Icon,
@@ -85,9 +79,6 @@ function Divider() {
   return <hr className="my-3 border-gray-300 dark:border-[#272727]" />;
 }
 
-/* ---------------------------------- */
-/* Sidebar */
-/* ---------------------------------- */
 
 export default function Sidebar() {
   return (
