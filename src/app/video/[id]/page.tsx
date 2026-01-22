@@ -41,7 +41,8 @@ export default function VideoPage() {
     fetchVideo();
   }, [videoId]);
 
-  if (loading) return <p className="text-center text-lg font-medium">Loading...</p>;
+  if (loading) return 
+  <p className="text-center text-lg font-medium">Loading...</p>;
 
   if (!videoDetails) {
     return <p className="text-center text-lg font-medium text-red-500">Video not found or invalid ID.</p>;
