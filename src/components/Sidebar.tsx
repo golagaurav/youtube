@@ -79,7 +79,6 @@ function Divider() {
   return <hr className="my-3 border-gray-300 dark:border-[#272727]" />;
 }
 
-
 export default function Sidebar() {
   return (
     <aside className="w-64 bg-white dark:bg-[#0f0f0f] text-gray-900 dark:text-white min-h-screen sticky top-0 overflow-y-auto scrollbar-hide">
@@ -144,7 +143,7 @@ export default function Sidebar() {
         </p>
 
         <p className="text-xs text-gray-500 dark:text-gray-400 px-3 mt-3 mb-10">
-          © 2025 Google LLC
+          © 2025
         </p>
       </ul>
     </aside>
