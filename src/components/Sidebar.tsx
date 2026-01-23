@@ -137,10 +137,9 @@ export default function Sidebar() {
         <Divider />
 
         <p className="text-xs text-gray-500 dark:text-gray-400 px-3 leading-snug">
-          About · Press · Copyright <br />
-          Contact us · Creators <br />
-          Advertise · Developers
-        </p>
+          About · Press · Copyright 
+        <br />Contact us · Creators <br />
+          Advertise · Developers</p>
 
         <p className="text-xs text-gray-500 dark:text-gray-400 px-3 mt-3 mb-10">
           © 2025
