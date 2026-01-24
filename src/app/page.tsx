@@ -15,10 +15,8 @@ export default function HomePage() {
 
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-[#0f0f0f]">
-      {/* ✅ Navbar on top */}
       <Navbar onMenuToggle={handleMenuToggle} />
 
-      {/* ✅ Sidebar + main content below navbar */}
       <div className="flex">
         <Sidebar />
 
